@@ -1,3 +1,0 @@
-C:/Users/SanyaBooster/source/repos/todo/todo/cmakeout/CMakeFiles/todoList.dir
-C:/Users/SanyaBooster/source/repos/todo/todo/cmakeout/CMakeFiles/ALL_BUILD.dir
-C:/Users/SanyaBooster/source/repos/todo/todo/cmakeout/CMakeFiles/ZERO_CHECK.dir
