@@ -32,7 +32,7 @@
 - cls - очистка консоли
   
 # Дополнительные библиотеки/программы
-1. Для запуска нужен коннектор [sqlite3](https://www.sqlite.org/download.html)
+1. Для запуска нужен коннектор [sqlite3](https://www.sqlite.org/download.html) (в моем случае: C source code as an amalgamation, version 3.40.0.)
 2. Также нужна система сборки [CMake](https://cmake.org/download/)
 # Запуск
 Если предыдущий раздел выполнен и нужные библиотеки/системы сборки установлены, то:
