@@ -10,7 +10,6 @@
 int main(int argc, char** argv) {
     ListItem lItem;
     CommandParser parser;
-    int choice;
     while (1) {
         std::cout << "Enter command: ";
         std::string command;
