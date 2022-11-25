@@ -1,9 +1,33 @@
-cmake_minimum_required(VERSION 3.13)
+PROJECT(sqlite3)
+cmake_minimum_required(VERSION 2.8)
 
-project(todoList VERSION 1.0 LANGUAGES CXX)
+include_directories(${CMAKE_SOURCE_DIR}/src)
+add_library(sqlite3 STATIC src/sqlite3.c src/sqlite3.h src/sqlite3ext.h)
+add_executable(sqlite src/sqlite3.c src/shell.c src/sqlite3.h src/sqlite3ext.h main.cpp Database.cpp Database.h ListItem.cpp ListItem.h CommandParser.cpp CommandParser.h)
 
+add_definitions(-DSQLITE_ENABLE_RTREE)
+add_definitions(-DSQLITE_ENABLE_FTS4)
+add_definitions(-DSQLITE_ENABLE_FTS5)
+add_definitions(-DSQLITE_ENABLE_JSON1)
+add_definitions(-DSQLITE_ENABLE_RBU)
+add_definitions(-DSQLITE_ENABLE_STAT4)
+
+if(WIN32)
+  add_custom_command(TARGET sqlite POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:sqlite> ${CMAKE_BINARY_DIR}/sqlite3.exe
+    DEPENDS sqlite
+  )
+  install(FILES sqlite3.exe DESTINATION bin)
+else()
+  include(FindThreads)
+  target_link_libraries(sqlite m ${CMAKE_THREAD_LIBS_INIT} ${CMAKE_DL_LIBS})
+  install(TARGETS sqlite RUNTIME DESTINATION bin)
+endif()
+
+install(FILES src/sqlite3.h src/sqlite3ext.h DESTINATION include)
+install(TARGETS sqlite3 LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
 if(MSVC)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++17")
 endif(MSVC)
 
-add_executable(todoList main.cpp sqlite3.c shell.c sqlite3.h sqlite3ext.h Database.cpp Database.h ListItem.cpp ListItem.h CommandParser.cpp CommandParser.h ) 
+
