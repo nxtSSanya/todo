@@ -7,6 +7,13 @@
 #include <vector>
 #include <iterator>
 
+const std::size_t addCmdArgs = 6;
+const std::size_t doneCmdArgs = 2;
+const std::size_t updCmdArgs = 2;
+const std::size_t delCmdArgs = 2;
+const std::size_t clsCmdArgs = 1;
+const std::size_t exitCmdArgs = 1;
+
 int main(int argc, char** argv) {
     ListItem lItem;
     CommandParser parser;
@@ -17,21 +24,21 @@ int main(int argc, char** argv) {
         std::vector<std::string> fields = parser.split(command);
 
         if (fields[0] == "add") {
-            if (fields.size() != 6) {
+            if (fields.size() != addCmdArgs) {
                 std::cout << "Unknown command\n";
                 break;
             }
             lItem.add(fields[1], fields[2], fields[3] + " " + fields[4], fields[5]);
         }
         else if (fields[0] == "done") {
-            if (fields.size() != 2) {
+            if (fields.size() != doneCmdArgs) {
                 std::cout << "Unknown command\n";
                 break;
             }
             lItem.done(fields[1]);
         }
         else if (fields[0] == "update") {
-            if (fields.size() != 2) {
+            if (fields.size() != updCmdArgs) {
                 std::cout << "Unknown command\n";
                 break;
             }
@@ -47,7 +54,7 @@ int main(int argc, char** argv) {
             lItem.update(new_name, new_desc, new_date, new_cat, fields[1]);
         }
         else if (fields[0] == "delete") {
-            if (fields.size() != 2) {
+            if (fields.size() != delCmdArgs) {
                 std::cout << "Unknown command\n";
                 break;
             }
@@ -57,14 +64,14 @@ int main(int argc, char** argv) {
             lItem.select(command);
         }
         else if (fields[0] == "cls") {
-            if (fields.size() != 1) {
+            if (fields.size() != clsCmdArgs) {
                 std::cout << "Unknown command\n";
                 break;
             }
             system("cls");
         }
         else if (fields[0] == "exit") {
-            if (fields.size() != 1) {
+            if (fields.size() != exitCmdArgs) {
                 std::cout << "Unknown command\n";
                 break;
             }
@@ -75,5 +82,6 @@ int main(int argc, char** argv) {
             break;
         }
     }
+    system("pause");
     return EXIT_SUCCESS;
 }
