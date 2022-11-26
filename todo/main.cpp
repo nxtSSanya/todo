@@ -48,6 +48,7 @@ int main(int argc, char** argv) {
         }
         else {
             std::cout << "Unknown command\n";
+            system("pause");
             break;
         }
     }
